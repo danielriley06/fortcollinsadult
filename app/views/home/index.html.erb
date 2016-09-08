@@ -1,0 +1,37 @@
+<header>
+  <div class="header-content">
+      <div class="header-content-inner">
+          <h1 id="homeHeading">Fort Collins Adult Soccer League</h1>
+          <hr>
+          <p>America has become the greatest beer brewing country in the world. Become a part of this beer history and taste the best by searching, ranking, and tracking your brewery visits.</p>
+          <a href="#signup" class="btn btn-primary btn-xl page-scroll">Sign Up!</a>
+      </div>
+  </div>
+</header>
+<section id="info">
+</section>
+<section id="signup">
+</section>
+<script>
+(function ($) {
+  $(document).ready(function(){
+
+    // hide .navbar first
+    $(".navbar").hide();
+
+    // fade in .navbar
+    $(function () {
+        $(window).scroll(function () {
+
+                 // set distance user needs to scroll before we start fadeIn
+            if ($(this).scrollTop() > 20) {
+                $('.navbar').fadeIn();
+            } else {
+                $('.navbar').fadeOut();
+            }
+        });
+    });
+
+});
+  }(jQuery));
+</script>
