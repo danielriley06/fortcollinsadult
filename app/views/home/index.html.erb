@@ -1,37 +1,137 @@
-<header>
+<section id="header">
   <div class="header-content">
       <div class="header-content-inner">
-          <h1 id="homeHeading">Fort Collins Adult Soccer League</h1>
+          <h1 id="homeHeading">Fort Collins Soccer Club Adult League</h1>
           <hr>
-          <p>America has become the greatest beer brewing country in the world. Become a part of this beer history and taste the best by searching, ranking, and tracking your brewery visits.</p>
+          <p>The Fort Collins Soccer Club men's, women's and coed soccer leagues for Fort Collin's area residents.</p>
           <a href="#signup" class="btn btn-primary btn-xl page-scroll">Sign Up!</a>
       </div>
   </div>
-</header>
+</section>
 <section id="info">
+  <div class="container">
+      <div class="row flex-items-xs-top">
+        <div class="col-xs-2">
+          <img id="ball" src='<%= asset_path('ball.png') %>' class="img-fluid ball" />
+        </div>
+        <div class="col-xs-10">
+          <h4>Men's League</h4>
+          <h6>The Men's Leagues play an 8 game season in the spring and in the fall. The Coed season is held during the summer.</h6>
+        </div>
+      </div>
+      <div class="row flex-items-xs-middle">
+        <div class="col-xs-2">
+          <img id="ball" src='<%= asset_path('ball.png') %>' class="img-fluid ball" />
+        </div>
+        <div class="col-xs-10">
+          <h4>Men's League</h4>
+          <h6>The Men's Leagues play an 8 game season in the spring and in the fall. The Coed season is held during the summer.</h6>
+        </div>
+      </div>
+      <div class="row flex-items-xs-middle">
+        <div class="col-xs-2">
+          <img id="ball" src='<%= asset_path('ball.png') %>' class="img-fluid ball" />
+        </div>
+        <div class="col-xs-10">
+          <h4>Men's League</h4>
+          <h6>The Men's Leagues play an 8 game season in the spring and in the fall. The Coed season is held during the summer.</h6>
+        </div>
+      </div>
+      <div class="row flex-items-xs-bottom">
+        <div class="col-xs-2">
+          <img id="ball" src='<%= asset_path('ball.png') %>' class="img-fluid ball" />
+        </div>
+        <div class="col-xs-10">
+          <h4>Men's League</h4>
+          <h6>The Men's Leagues play an 8 game season in the spring and in the fall. The Coed season is held during the summer.</h6>
+        </div>
+      </div>
+    </div>
 </section>
 <section id="signup">
+  <div class=“inner”>
+    <div class="media">
+      <figure>
+        <img src='<%= asset_path('ball.png') %>' class="img-fluid ball" />
+      </figure>
+      <div class="media-body">
+        <h4 class="media-heading">Men's League</h4>
+        The Men's Leagues play an 8 game season in the spring and in the fall. The Coed season is held during the summer.
+      </div>
+    </div>
+  </div>
 </section>
+
 <script>
 (function ($) {
   $(document).ready(function(){
-
-    // hide .navbar first
-    $(".navbar").hide();
-
-    // fade in .navbar
     $(function () {
         $(window).scroll(function () {
 
                  // set distance user needs to scroll before we start fadeIn
             if ($(this).scrollTop() > 20) {
-                $('.navbar').fadeIn();
+                $('.navbar').slideDown();
             } else {
-                $('.navbar').fadeOut();
+                $('.navbar').slideUp();
             }
         });
     });
-
 });
   }(jQuery));
+
+  (function($) {
+    var wh = window.innerHeight,
+        $ball = $('.ball');
+})
+  (jQuery);
+
+  // Init ScrollMagic
+  var ctrl = new ScrollMagic.Controller({
+    globalSceneOptions: {
+      triggerHook: 'onLeave'
+    }
+  });
+
+  var controllerContentEnter = new ScrollMagic.Controller();
+
+  // Create scene
+  $("section").each(function() {
+
+    var name = $(this).attr('id');
+
+    new ScrollMagic.Scene({
+      triggerElement: this
+    })
+    .setPin(this)
+    .addTo(ctrl);
+
+  });
+
+  // iPhone intro animation Tween
+  $('.ball').each(function() {
+    var currentStrong = this;
+
+    var ballIntro = TweenMax.staggerFrom(currentStrong, .5, {rotation:360, x:-500}, 0.5);
+    new ScrollMagic.Scene({
+      offset: 200,
+      triggerHook: "onEnter",
+      reverse: true })
+    .setTween(ballIntro)
+    .triggerElement("#info")
+    .addTo(controllerContentEnter);
+  });
+
+$('.ball').each(function() {
+  var currentStrong = this;
+
+  var ballIntro = TweenMax.staggerTo(currentStrong, .5, {rotation:360, x:-500}, 0.5);
+  new ScrollMagic.Scene({
+    offset: -200,
+    triggerHook: "onLeave",
+    reverse: true })
+  .setTween(ballIntro)
+  .triggerElement("#info")
+  .addTo(controllerContentEnter);
+});
+
 </script>
